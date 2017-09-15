@@ -6,9 +6,12 @@
  * Time: 11:25 AM
  */
 
-class ShopProduct
+class ShopProduct implements IdentityObject
 {
+    use PriceUtilities, IdentityTrait;
+
     private $id = 0;
+    protected $price;
 
     public function setID(int $id)
     {
@@ -54,5 +57,10 @@ class ShopProduct
         $product->setDiscount((int) $row['discount']);
 
         return $product;
+    }
+
+    public function getPrice(): float
+    {
+        return $this->price;
     }
 }
